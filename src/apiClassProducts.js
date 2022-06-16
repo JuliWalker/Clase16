@@ -19,12 +19,9 @@ export default class Contenedor {
 
     async getById(id) {
         try {
-            // tengo que revisar que pasa si el where no encuentra nada
             let product = await this.knex.from(this.table).select("*").where('id', id)
             console.log(product)
-            // product ? console.log("busqueda por ID exitosa") : console.log("el producto con el ID buscado no fue encontrado")
             return product
-            // ? product : null;
         }
         catch (err) {
             console.log('Error en la busquedo por ID', err);
