@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import express from 'express'
 
 export const options = {
     mariaDB:{
@@ -7,12 +8,12 @@ export const options = {
             host:'localhost',
             user:'root',
             password: process.env.DB_PASSWORD,
-            database:'ecommerce'
+            database:'eccomerce'
         },
         pool:{min:0,max:15}
     }
 /*     sqlite:{
-        cliente:sqlite3,
+        client:"sqlite3",
         connection:{
             filename: "./db.sqlite"
         },

@@ -1,6 +1,6 @@
-/* import {Router} from 'express'
+import {Router} from 'express'
 import { options } from '../dataBase/configDB';
-import Api from '../apiClass'
+import Api from '../apiClassProducts'
 const api = new Api(options.mariaDB,'products')
 const router = Router()
 
@@ -31,15 +31,21 @@ router.get('/:id', async (req,res)=>{
 
 router.post('/', access, async (req,res)=>{
     const obj = req.body
-    obj.timestamps = Date.now()
-    const newId= await api.saveNew(obj)
-    res.json(newId)
+    const date = Date.now()
+    const dateNow = new Date(date)
+    const dateString = dateNow.toUTCString()
+    obj.timestamps = dateString
+    await api.saveNew(obj)
+    res.json("elemento cargado con exito")
 })
 
 router.put('/:id', access, async (req,res)=>{
     const {id} = req.params
     const obj = req.body
-    obj.timestamps = Date.now()
+    const date = Date.now()
+    const dateNow = new Date(date)
+    const dateString = dateNow.toUTCString()
+    obj.timestamps = dateString
     const exito = await api.replaceById(id, obj)
     if (exito) {
         res.json("producto reemplazado con exito")
@@ -58,4 +64,4 @@ router.delete('/:id', access, async (req,res)=>{
     }
 })
 
-export default router */
+export default router

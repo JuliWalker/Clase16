@@ -1,4 +1,4 @@
-/* import {Router} from 'express'
+import {Router} from 'express'
 import { options } from '../dataBase/configDB';
 import Api from '../apiClass'
 const api = new Api(options.mariaDB,'carts')
@@ -16,7 +16,10 @@ router.post('/', async (req,res)=>{
     // el objeto lo tengo que armar desde el front, con todos los productos que tiene el carrito. Aca solo guardo el array de productos y le asigno un ID-carrito
     const obj = {}
     obj.products = req.body
-    obj.timestamps = Date.now()
+    const date = Date.now()
+    const dateNow = new Date(date)
+    const dateString = dateNow.toUTCString()
+    obj.timestamps = dateString
     const newId = await apiCart.saveNew(obj)
     res.json(newId)
 })
@@ -79,4 +82,4 @@ router.delete('/:id/productos/:id_prod', async (req,res)=>{
 })
 
 
-export default router */
+export default router
