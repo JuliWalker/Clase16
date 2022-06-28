@@ -12,11 +12,4 @@ export const options = {
         },
         pool:{min:0,max:15}
     }
-/*     sqlite:{
-        client:"sqlite3",
-        connection:{
-            filename: "./db.sqlite"
-        },
-        useNullAsDefault: true
-    } */
 }
